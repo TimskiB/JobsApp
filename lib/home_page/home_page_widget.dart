@@ -2,10 +2,12 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../new_shift/new_shift_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 
 class HomePageWidget extends StatefulWidget {
   HomePageWidget({Key key}) : super(key: key);
@@ -115,7 +117,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             child: SizedBox(
                               width: 50,
                               height: 50,
-                              child: SpinKitRipple(
+                              child: SpinKitWanderingCubes(
                                 color: FlutterFlowTheme.primaryColor,
                                 size: 50,
                               ),
@@ -174,8 +176,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     Padding(
                       padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
                       child: FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
+                        onPressed: () async {
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              duration: Duration(milliseconds: 500),
+                              reverseDuration: Duration(milliseconds: 500),
+                              child: NewShiftWidget(),
+                            ),
+                          );
                         },
                         text: '+ Add shift',
                         options: FFButtonOptions(
@@ -211,7 +221,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         child: SizedBox(
                           width: 50,
                           height: 50,
-                          child: SpinKitRipple(
+                          child: SpinKitWanderingCubes(
                             color: FlutterFlowTheme.primaryColor,
                             size: 50,
                           ),
@@ -263,18 +273,19 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
-                                      child: Text(
-                                        listViewShiftsRecord.description
-                                            .toString(),
-                                        style:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Poppins',
-                                          color: Color(0xFF1B694A),
-                                          fontWeight: FontWeight.w300,
-                                        ),
-                                      ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Text(
+                                          '₪${listViewShiftsRecord.description.toString()}',
+                                          style: FlutterFlowTheme.bodyText1
+                                              .override(
+                                            fontFamily: 'Poppins',
+                                            color: Color(0xFF1B694A),
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                        )
+                                      ],
                                     ),
                                     Padding(
                                       padding: EdgeInsets.fromLTRB(0, 5, 0, 0),

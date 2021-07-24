@@ -63,7 +63,7 @@ class _NavBarPageState extends State<NavBarPage> {
               color: Color(0xFF9E9E9E),
               size: 24,
             ),
-            label: 'Home',
+            label: 'Financial',
           ),
           BottomNavigationBarItem(
             icon: FaIcon(
@@ -79,13 +79,13 @@ class _NavBarPageState extends State<NavBarPage> {
               color: Color(0xFF9E9E9E),
               size: 24,
             ),
-            label: 'Home',
+            label: 'Schedule',
           )
         ],
         backgroundColor: Color(0xFFF6F5F4),
         currentIndex: tabs.keys.toList().indexOf(_currentPage),
-        selectedItemColor: Color(0xFF2D2A2A),
-        unselectedItemColor: Color(0x6B000000),
+        selectedItemColor: Color(0xFF0A0A0A),
+        unselectedItemColor: Color(0xFF2D2A2A),
         onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
         showSelectedLabels: true,
         showUnselectedLabels: true,
