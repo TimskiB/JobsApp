@@ -2,7 +2,7 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../new_task_page/new_task_page_widget.dart';
+import '../new_shift/new_shift_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -183,7 +183,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               type: PageTransitionType.bottomToTop,
                               duration: Duration(milliseconds: 270),
                               reverseDuration: Duration(milliseconds: 270),
-                              child: NewTaskPageWidget(),
+                              child: NewShiftWidget(),
                             ),
                           );
                         },

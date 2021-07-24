@@ -26,254 +26,410 @@ class _NewShiftWidgetState extends State<NewShiftWidget> {
   @override
   void initState() {
     super.initState();
-    jobNameController = TextEditingController(text: 'Rami Levi');
+    jobNameController = TextEditingController();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.tertiaryColor,
-        automaticallyImplyLeading: true,
-        title: Text(
-          'New Shift',
-          style: FlutterFlowTheme.title1.override(
-            fontFamily: 'Poppins',
-          ),
-        ),
-        actions: [],
-        centerTitle: true,
-        elevation: 0,
-      ),
       body: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+              padding: EdgeInsets.fromLTRB(0, 44, 12, 12),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            width: 330,
-                            height: 60,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(
-                                color: Color(0xFFE6E6E6),
-                              ),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
-                              child: TextFormField(
-                                controller: jobNameController,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText: 'Job',
-                                  labelStyle:
-                                      FlutterFlowTheme.bodyText2.override(
-                                    fontFamily: 'Montserrat',
-                                    color: Color(0xFF8B97A2),
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 1,
-                                    ),
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(4.0),
-                                      topRight: Radius.circular(4.0),
-                                    ),
-                                  ),
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 1,
-                                    ),
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(4.0),
-                                      topRight: Radius.circular(4.0),
-                                    ),
-                                  ),
-                                  prefixIcon: Icon(
-                                    Icons.house_siding,
-                                  ),
-                                ),
-                                style: FlutterFlowTheme.bodyText2.override(
-                                  fontFamily: 'Montserrat',
-                                  color: Color(0xFF8B97A2),
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
-                    child: FFButtonWidget(
-                      onPressed: () async {
-                        await DatePicker.showDatePicker(context,
-                            showTitleActions: true, onConfirm: (date) {
-                          setState(() => datePicked = date);
-                        }, currentTime: DateTime.now());
-                      },
-                      text: 'Choose Day',
-                      options: FFButtonOptions(
-                        width: 130,
-                        height: 40,
-                        color: FlutterFlowTheme.primaryColor,
-                        textStyle: FlutterFlowTheme.subtitle2.override(
-                          fontFamily: 'Poppins',
-                          color: Colors.white,
-                        ),
-                        elevation: 5,
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: 12,
+                  InkWell(
+                    onTap: () async {
+                      Navigator.pop(context);
+                    },
+                    child: Card(
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      color: Color(0xFF1A1F24),
+                      elevation: 3,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          'Start:',
-                          style: FlutterFlowTheme.bodyText1.override(
-                            fontFamily: 'Poppins',
-                          ),
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
+                        child: Icon(
+                          Icons.close_rounded,
+                          color: FlutterFlowTheme.tertiaryColor,
+                          size: 24,
                         ),
-                        FlutterFlowDropDown(
-                          initialOption: '6:00',
-                          options: [
-                            '5:00',
-                            '6:00',
-                            '7:00',
-                            '8:00',
-                            '9:00',
-                            '10:00',
-                            '11:00',
-                            '12:00',
-                            '13:00',
-                            '14:00',
-                            '15:00',
-                            '16:00',
-                            '17:00',
-                            '18:00',
-                            '19:00',
-                            '20:00',
-                            '21:00',
-                            '22:00'
-                          ],
-                          onChanged: (value) {
-                            setState(() => startSelectorValue = value);
-                          },
-                          width: 130,
-                          height: 40,
-                          textStyle: FlutterFlowTheme.bodyText1.override(
-                            fontFamily: 'Poppins',
-                            color: Colors.black,
-                          ),
-                          fillColor: Colors.white,
-                          elevation: 5,
-                          borderColor: Color(0xFF2D2A2A),
-                          borderWidth: 1,
-                          borderRadius: 5,
-                          margin: EdgeInsets.fromLTRB(8, 4, 8, 4),
-                          hidesUnderline: true,
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          'End:',
-                          style: FlutterFlowTheme.bodyText1.override(
-                            fontFamily: 'Poppins',
-                          ),
-                        ),
-                        FlutterFlowDropDown(
-                          initialOption: '15:00',
-                          options: [
-                            '13:00',
-                            '14:00',
-                            '15:00',
-                            '16:00',
-                            '17:00',
-                            '18:00',
-                            '19:00',
-                            '20:00',
-                            '22:00',
-                            '23:00',
-                            '00:00',
-                            '1:00'
-                          ],
-                          onChanged: (value) {
-                            setState(() => endSelectorValue = value);
-                          },
-                          width: 130,
-                          height: 40,
-                          textStyle: FlutterFlowTheme.bodyText1.override(
-                            fontFamily: 'Poppins',
-                            color: Colors.black,
-                          ),
-                          fillColor: Colors.white,
-                          elevation: 5,
-                          borderColor: Color(0xFF2D2A2A),
-                          borderWidth: 1,
-                          borderRadius: 5,
-                          margin: EdgeInsets.fromLTRB(8, 4, 8, 4),
-                          hidesUnderline: true,
-                        )
-                      ],
+                      ),
                     ),
                   )
                 ],
               ),
             ),
-            Align(
-              alignment: Alignment(0, 0.05),
-              child: IconButton(
-                onPressed: () async {
-                  final shiftsCreateData = createShiftsRecordData(
-                    job: jobNameController.text,
-                    startHour: startSelectorValue,
-                    endHour: endSelectorValue,
-                    date: datePicked,
-                  );
-                  await ShiftsRecord.collection.doc().set(shiftsCreateData);
-                },
-                icon: Icon(
-                  Icons.add_circle,
-                  color: Color(0xFF1B694A),
-                  size: 48,
-                ),
-                iconSize: 48,
-              ),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Material(
+                  color: Colors.transparent,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(0),
+                      bottomRight: Radius.circular(0),
+                      topLeft: Radius.circular(16),
+                      topRight: Radius.circular(16),
+                    ),
+                  ),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 1,
+                    decoration: BoxDecoration(
+                      color: Color(0xFF131619),
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 7,
+                          color: Color(0x5D000000),
+                          offset: Offset(0, -2),
+                        )
+                      ],
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(0),
+                        bottomRight: Radius.circular(0),
+                        topLeft: Radius.circular(16),
+                        topRight: Radius.circular(16),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(16, 20, 16, 0),
+                                child: Text(
+                                  'Add Shift',
+                                  style: FlutterFlowTheme.title1.override(
+                                    fontFamily: 'Poppins',
+                                    color: Color(0xFFF6F5F4),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(16, 4, 16, 0),
+                                child: Text(
+                                  'Fill out the details below to add a new shift.',
+                                  style: FlutterFlowTheme.subtitle1.override(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
+                            child: TextFormField(
+                              controller: jobNameController,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelText: 'Job Name',
+                                labelStyle: FlutterFlowTheme.bodyText2.override(
+                                  fontFamily: 'Montserrat',
+                                  color: Color(0xFF8B97A2),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                hintText: 'Enter job name...',
+                                hintStyle: FlutterFlowTheme.bodyText2.override(
+                                  fontFamily: 'Montserrat',
+                                  color: Color(0xFF8B97A2),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xFF1A1F24),
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(8),
+                                    bottomRight: Radius.circular(8),
+                                    topLeft: Radius.circular(8),
+                                    topRight: Radius.circular(8),
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xFF1A1F24),
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(8),
+                                    bottomRight: Radius.circular(8),
+                                    topLeft: Radius.circular(8),
+                                    topRight: Radius.circular(8),
+                                  ),
+                                ),
+                                filled: true,
+                                fillColor: Color(0xFF1A1F24),
+                                prefixIcon: Icon(
+                                  Icons.house_siding,
+                                  color: Color(0xFF8B97A2),
+                                ),
+                              ),
+                              style: FlutterFlowTheme.bodyText2.override(
+                                fontFamily: 'Montserrat',
+                                color: FlutterFlowTheme.tertiaryColor,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
+                            child: InkWell(
+                              onTap: () async {
+                                await DatePicker.showDatePicker(context,
+                                    showTitleActions: true, onConfirm: (date) {
+                                  setState(() => datePicked = date);
+                                }, currentTime: DateTime.now());
+                              },
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * 0.92,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFF1A1F24),
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                    color: Color(0xFF1A1F24),
+                                    width: 1,
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(7, 3, 0, 0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Icon(
+                                        Icons.date_range_rounded,
+                                        color: Color(0xFF8B97A2),
+                                        size: 24,
+                                      ),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(8, 0, 0, 0),
+                                        child: Text(
+                                          'Choose Date',
+                                          style: FlutterFlowTheme.bodyText2
+                                              .override(
+                                            fontFamily: 'Montserrat',
+                                            color: Color(0xFF8B97A2),
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  'Start:',
+                                  style: FlutterFlowTheme.bodyText2.override(
+                                    fontFamily: 'Montserrat',
+                                    color: Color(0xFF8B97A2),
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                FlutterFlowDropDown(
+                                  initialOption: '6:00',
+                                  options: [
+                                    '5:00',
+                                    '6:00',
+                                    '7:00',
+                                    '8:00',
+                                    '9:00',
+                                    '10:00',
+                                    '11:00',
+                                    '12:00',
+                                    '13:00',
+                                    '14:00',
+                                    '15:00',
+                                    '16:00',
+                                    '17:00',
+                                    '18:00',
+                                    '19:00',
+                                    '20:00',
+                                    '21:00',
+                                    '22:00'
+                                  ],
+                                  onChanged: (value) {
+                                    setState(() => startSelectorValue = value);
+                                  },
+                                  width: 130,
+                                  height: 40,
+                                  textStyle:
+                                      FlutterFlowTheme.bodyText2.override(
+                                    fontFamily: 'Poppins',
+                                    color: FlutterFlowTheme.tertiaryColor,
+                                  ),
+                                  icon: Icon(
+                                    Icons.play_arrow,
+                                    size: 15,
+                                  ),
+                                  fillColor: Color(0xFF1A1F24),
+                                  elevation: 5,
+                                  borderColor: Color(0xFF1A1F24),
+                                  borderWidth: 1,
+                                  borderRadius: 5,
+                                  margin: EdgeInsets.fromLTRB(8, 4, 8, 4),
+                                  hidesUnderline: true,
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  'End:',
+                                  style: FlutterFlowTheme.bodyText2.override(
+                                    fontFamily: 'Montserrat',
+                                    color: Color(0xFF8B97A2),
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                FlutterFlowDropDown(
+                                  initialOption: '15:00',
+                                  options: [
+                                    '13:00',
+                                    '14:00',
+                                    '15:00',
+                                    '16:00',
+                                    '17:00',
+                                    '18:00',
+                                    '19:00',
+                                    '20:00',
+                                    '22:00',
+                                    '23:00',
+                                    '00:00',
+                                    '1:00'
+                                  ],
+                                  onChanged: (value) {
+                                    setState(() => endSelectorValue = value);
+                                  },
+                                  width: 130,
+                                  height: 40,
+                                  textStyle:
+                                      FlutterFlowTheme.bodyText2.override(
+                                    fontFamily: 'Poppins',
+                                    color: FlutterFlowTheme.tertiaryColor,
+                                  ),
+                                  icon: Icon(
+                                    Icons.play_arrow_sharp,
+                                    size: 15,
+                                  ),
+                                  fillColor: Color(0xFF1A1F24),
+                                  elevation: 5,
+                                  borderColor: Color(0xFF1A1F24),
+                                  borderWidth: 1,
+                                  borderRadius: 5,
+                                  margin: EdgeInsets.fromLTRB(8, 4, 8, 4),
+                                  hidesUnderline: true,
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                FFButtonWidget(
+                                  onPressed: () async {
+                                    Navigator.pop(context);
+                                  },
+                                  text: 'Cancel',
+                                  options: FFButtonOptions(
+                                    width: 130,
+                                    height: 50,
+                                    color: Color(0xFF131619),
+                                    textStyle:
+                                        FlutterFlowTheme.bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      color: FlutterFlowTheme.tertiaryColor,
+                                      fontSize: 16,
+                                    ),
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1,
+                                    ),
+                                    borderRadius: 12,
+                                  ),
+                                ),
+                                FFButtonWidget(
+                                  onPressed: () async {
+                                    final shiftsCreateData =
+                                        createShiftsRecordData(
+                                      job: jobNameController.text,
+                                      date: datePicked,
+                                      startHour: startSelectorValue,
+                                      endHour: endSelectorValue,
+                                    );
+                                    await ShiftsRecord.collection
+                                        .doc()
+                                        .set(shiftsCreateData);
+                                    Navigator.pop(context);
+                                  },
+                                  text: 'Create Shift',
+                                  options: FFButtonOptions(
+                                    width: 130,
+                                    height: 50,
+                                    color: FlutterFlowTheme.primaryColor,
+                                    textStyle:
+                                        FlutterFlowTheme.bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                    ),
+                                    elevation: 3,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1,
+                                    ),
+                                    borderRadius: 8,
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              ],
             )
           ],
         ),
