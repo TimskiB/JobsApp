@@ -28,6 +28,9 @@ abstract class ShiftsRecord
   String get endHour;
 
   @nullable
+  double get earned;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -35,7 +38,8 @@ abstract class ShiftsRecord
     ..job = ''
     ..description = 0.0
     ..startHour = ''
-    ..endHour = '';
+    ..endHour = ''
+    ..earned = 0.0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('shifts');
@@ -60,6 +64,7 @@ Map<String, dynamic> createShiftsRecordData({
   DateTime date,
   String startHour,
   String endHour,
+  double earned,
 }) =>
     serializers.toFirestore(
         ShiftsRecord.serializer,
@@ -68,4 +73,5 @@ Map<String, dynamic> createShiftsRecordData({
           ..description = description
           ..date = date
           ..startHour = startHour
-          ..endHour = endHour));
+          ..endHour = endHour
+          ..earned = earned));
