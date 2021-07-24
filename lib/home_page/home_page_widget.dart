@@ -1,3 +1,4 @@
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -103,11 +104,44 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ),
                   Align(
                     alignment: Alignment(0, 0),
-                    child: Text(
-                      '[Payment]',
-                      style: FlutterFlowTheme.title1.override(
-                        fontFamily: 'Poppins',
+                    child: StreamBuilder<List<FinancialRecord>>(
+                      stream: queryFinancialRecord(
+                        singleRecord: true,
                       ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: SpinKitRipple(
+                                color: FlutterFlowTheme.primaryColor,
+                                size: 50,
+                              ),
+                            ),
+                          );
+                        }
+                        List<FinancialRecord> textFinancialRecordList =
+                            snapshot.data;
+                        // Customize what your widget looks like with no query results.
+                        if (snapshot.data.isEmpty) {
+                          return Container(
+                            height: 100,
+                            child: Center(
+                              child: Text('No results.'),
+                            ),
+                          );
+                        }
+                        final textFinancialRecord =
+                            textFinancialRecordList.first;
+                        return Text(
+                          textFinancialRecord.income.toString(),
+                          style: FlutterFlowTheme.title1.override(
+                            fontFamily: 'Poppins',
+                          ),
+                        );
+                      },
                     ),
                   ),
                   Align(
@@ -165,80 +199,117 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 ),
               ),
               Expanded(
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
-                  child: ListView(
-                    padding: EdgeInsets.zero,
-                    scrollDirection: Axis.vertical,
-                    children: [
-                      Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: Color(0xFFDCFCEF),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Container(
-                          width: 100,
-                          height: 100,
-                          decoration: BoxDecoration(),
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(25, 10, 25, 10),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '[Shift Title]',
-                                  style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Poppins',
-                                    color: Color(0xFF1B694A),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
-                                  child: Text(
-                                    '[Shift Payment]',
-                                    style: FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      color: Color(0xFF1B694A),
-                                      fontWeight: FontWeight.w300,
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      FaIcon(
-                                        FontAwesomeIcons.clock,
-                                        color: Color(0xFF1B694A),
-                                        size: 17,
-                                      ),
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                        child: Text(
-                                          '09:00 - 10:00',
-                                          style: FlutterFlowTheme.bodyText1
-                                              .override(
-                                            fontFamily: 'Poppins',
-                                            color: Color(0xFF1B694A),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
+                child: StreamBuilder<List<ShiftsRecord>>(
+                  stream: queryShiftsRecord(
+                    queryBuilder: (shiftsRecord) =>
+                        shiftsRecord.orderBy('start_hour'),
+                  ),
+                  builder: (context, snapshot) {
+                    // Customize what your widget looks like when it's loading.
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: SpinKitRipple(
+                            color: FlutterFlowTheme.primaryColor,
+                            size: 50,
                           ),
                         ),
-                      )
-                    ],
-                  ),
+                      );
+                    }
+                    List<ShiftsRecord> listViewShiftsRecordList = snapshot.data;
+                    // Customize what your widget looks like with no query results.
+                    if (snapshot.data.isEmpty) {
+                      return Container(
+                        height: 100,
+                        child: Center(
+                          child: Text('No results.'),
+                        ),
+                      );
+                    }
+                    return Padding(
+                      padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
+                      child: ListView.builder(
+                        padding: EdgeInsets.zero,
+                        scrollDirection: Axis.vertical,
+                        itemCount: listViewShiftsRecordList.length,
+                        itemBuilder: (context, listViewIndex) {
+                          final listViewShiftsRecord =
+                              listViewShiftsRecordList[listViewIndex];
+                          return Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: Color(0xFFDCFCEF),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Container(
+                              width: 100,
+                              height: 100,
+                              decoration: BoxDecoration(),
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(25, 10, 25, 10),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      listViewShiftsRecord.job,
+                                      style:
+                                          FlutterFlowTheme.bodyText1.override(
+                                        fontFamily: 'Poppins',
+                                        color: Color(0xFF1B694A),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
+                                      child: Text(
+                                        listViewShiftsRecord.description
+                                            .toString(),
+                                        style:
+                                            FlutterFlowTheme.bodyText1.override(
+                                          fontFamily: 'Poppins',
+                                          color: Color(0xFF1B694A),
+                                          fontWeight: FontWeight.w300,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          FaIcon(
+                                            FontAwesomeIcons.clock,
+                                            color: Color(0xFF1B694A),
+                                            size: 17,
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.fromLTRB(
+                                                10, 0, 0, 0),
+                                            child: Text(
+                                              '${dateTimeFormat('M/d H:m', listViewShiftsRecord.startHour)} - ${dateTimeFormat('M/d H:m', listViewShiftsRecord.endHour)}',
+                                              style: FlutterFlowTheme.bodyText1
+                                                  .override(
+                                                fontFamily: 'Poppins',
+                                                color: Color(0xFF1B694A),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  },
                 ),
               )
             ],

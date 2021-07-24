@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jobs/home_page/home_page_widget.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'financial/financial_widget.dart';
@@ -8,7 +9,9 @@ import 'schedule/schedule_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 

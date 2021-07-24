@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "208816554691",
+    "project_id": "jobs-cdd4c",
+    "storage_bucket": "jobs-cdd4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208816554691:android:c9b646b772ae8d928e1876",
+        "android_client_info": {
+          "package_name": "com.flutterflow.jobs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "208816554691-1m1gp667bpne4u144nq95j4t3but01m2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmIZjfKbXmAKKVSnzWG4uKdtSOtQcKpps"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "208816554691-1m1gp667bpne4u144nq95j4t3but01m2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "208816554691-7mrk9dfl1p88toat2j1v8br5no5bbjf9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flutterflow.jobs"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
