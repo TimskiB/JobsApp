@@ -63,6 +63,11 @@ class _NavBarPageState extends State<NavBarPage> {
               color: Color(0xFF9E9E9E),
               size: 24,
             ),
+            activeIcon: FaIcon(
+              FontAwesomeIcons.coins,
+              color: FlutterFlowTheme.primaryColor,
+              size: 24,
+            ),
             label: 'Financial',
           ),
           BottomNavigationBarItem(
@@ -71,12 +76,22 @@ class _NavBarPageState extends State<NavBarPage> {
               color: Color(0xFF9E9E9E),
               size: 24,
             ),
+            activeIcon: Icon(
+              Icons.home,
+              color: FlutterFlowTheme.primaryColor,
+              size: 24,
+            ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: FaIcon(
               FontAwesomeIcons.calendarAlt,
               color: Color(0xFF9E9E9E),
+              size: 24,
+            ),
+            activeIcon: FaIcon(
+              FontAwesomeIcons.calendarAlt,
+              color: FlutterFlowTheme.primaryColor,
               size: 24,
             ),
             label: 'Schedule',
