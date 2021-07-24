@@ -14,9 +14,6 @@ abstract class ShiftsRecord
   String get job;
 
   @nullable
-  double get description;
-
-  @nullable
   DateTime get date;
 
   @nullable
@@ -36,7 +33,6 @@ abstract class ShiftsRecord
 
   static void _initializeBuilder(ShiftsRecordBuilder builder) => builder
     ..job = ''
-    ..description = 0.0
     ..startHour = ''
     ..endHour = ''
     ..earned = 0.0;
@@ -60,7 +56,6 @@ abstract class ShiftsRecord
 
 Map<String, dynamic> createShiftsRecordData({
   String job,
-  double description,
   DateTime date,
   String startHour,
   String endHour,
@@ -70,7 +65,6 @@ Map<String, dynamic> createShiftsRecordData({
         ShiftsRecord.serializer,
         ShiftsRecord((s) => s
           ..job = job
-          ..description = description
           ..date = date
           ..startHour = startHour
           ..endHour = endHour
