@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jobs/home_page/home_page_widget.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'financial/financial_widget.dart';
@@ -8,7 +9,9 @@ import 'schedule/schedule_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -60,7 +63,7 @@ class _NavBarPageState extends State<NavBarPage> {
               color: Color(0xFF9E9E9E),
               size: 24,
             ),
-            label: 'Home',
+            label: 'Financial',
           ),
           BottomNavigationBarItem(
             icon: FaIcon(
@@ -76,13 +79,13 @@ class _NavBarPageState extends State<NavBarPage> {
               color: Color(0xFF9E9E9E),
               size: 24,
             ),
-            label: 'Home',
+            label: 'Schedule',
           )
         ],
         backgroundColor: Color(0xFFF6F5F4),
         currentIndex: tabs.keys.toList().indexOf(_currentPage),
-        selectedItemColor: Color(0xFF2D2A2A),
-        unselectedItemColor: Color(0x6B000000),
+        selectedItemColor: Color(0xFF0A0A0A),
+        unselectedItemColor: Color(0xFF2D2A2A),
         onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
         showSelectedLabels: true,
         showUnselectedLabels: true,
