@@ -211,11 +211,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               ),
               Expanded(
                 child: StreamBuilder<List<ShiftsRecord>>(
-                  stream: queryShiftsRecord(
-                    queryBuilder: (shiftsRecord) => shiftsRecord
-                        .where('earned', isEqualTo: -1)
-                        .orderBy('date'),
-                  ),
+                  stream: queryShiftsRecord(),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
                     if (!snapshot.hasData) {
