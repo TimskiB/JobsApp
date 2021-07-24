@@ -17,12 +17,15 @@ abstract class ShiftsRecord
   double get description;
 
   @nullable
+  DateTime get date;
+
+  @nullable
   @BuiltValueField(wireName: 'start_hour')
-  DateTime get startHour;
+  String get startHour;
 
   @nullable
   @BuiltValueField(wireName: 'end_hour')
-  DateTime get endHour;
+  String get endHour;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
@@ -30,7 +33,9 @@ abstract class ShiftsRecord
 
   static void _initializeBuilder(ShiftsRecordBuilder builder) => builder
     ..job = ''
-    ..description = 0.0;
+    ..description = 0.0
+    ..startHour = ''
+    ..endHour = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('shifts');
@@ -52,13 +57,15 @@ abstract class ShiftsRecord
 Map<String, dynamic> createShiftsRecordData({
   String job,
   double description,
-  DateTime startHour,
-  DateTime endHour,
+  DateTime date,
+  String startHour,
+  String endHour,
 }) =>
     serializers.toFirestore(
         ShiftsRecord.serializer,
         ShiftsRecord((s) => s
           ..job = job
           ..description = description
+          ..date = date
           ..startHour = startHour
           ..endHour = endHour));

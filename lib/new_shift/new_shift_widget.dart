@@ -1,7 +1,9 @@
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_drop_down_template.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -16,15 +18,15 @@ class NewShiftWidget extends StatefulWidget {
 
 class _NewShiftWidgetState extends State<NewShiftWidget> {
   DateTime datePicked = DateTime.now();
-  TextEditingController textController;
-  String dropDownValue1;
-  String dropDownValue2;
+  TextEditingController jobNameController;
+  String startSelectorValue;
+  String endSelectorValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    textController = TextEditingController(text: 'Rami Levi');
+    jobNameController = TextEditingController(text: 'Rami Levi');
   }
 
   @override
@@ -75,7 +77,7 @@ class _NewShiftWidgetState extends State<NewShiftWidget> {
                             child: Padding(
                               padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
                               child: TextFormField(
-                                controller: textController,
+                                controller: jobNameController,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelText: 'Job',
@@ -183,7 +185,7 @@ class _NewShiftWidgetState extends State<NewShiftWidget> {
                             '22:00'
                           ],
                           onChanged: (value) {
-                            setState(() => dropDownValue1 = value);
+                            setState(() => startSelectorValue = value);
                           },
                           width: 130,
                           height: 40,
@@ -231,7 +233,7 @@ class _NewShiftWidgetState extends State<NewShiftWidget> {
                             '1:00'
                           ],
                           onChanged: (value) {
-                            setState(() => dropDownValue2 = value);
+                            setState(() => endSelectorValue = value);
                           },
                           width: 130,
                           height: 40,
@@ -256,8 +258,14 @@ class _NewShiftWidgetState extends State<NewShiftWidget> {
             Align(
               alignment: Alignment(0, 0.05),
               child: IconButton(
-                onPressed: () {
-                  print('IconButton pressed ...');
+                onPressed: () async {
+                  final shiftsCreateData = createShiftsRecordData(
+                    job: jobNameController.text,
+                    startHour: startSelectorValue,
+                    endHour: endSelectorValue,
+                    date: datePicked,
+                  );
+                  await ShiftsRecord.collection.doc().set(shiftsCreateData);
                 },
                 icon: Icon(
                   Icons.add_circle,

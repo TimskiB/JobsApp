@@ -2,7 +2,7 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../new_shift/new_shift_widget.dart';
+import '../new_task_page/new_task_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -180,10 +180,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           await Navigator.push(
                             context,
                             PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 500),
-                              reverseDuration: Duration(milliseconds: 500),
-                              child: NewShiftWidget(),
+                              type: PageTransitionType.bottomToTop,
+                              duration: Duration(milliseconds: 270),
+                              reverseDuration: Duration(milliseconds: 270),
+                              child: NewTaskPageWidget(),
                             ),
                           );
                         },
@@ -212,7 +212,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 child: StreamBuilder<List<ShiftsRecord>>(
                   stream: queryShiftsRecord(
                     queryBuilder: (shiftsRecord) =>
-                        shiftsRecord.orderBy('start_hour'),
+                        shiftsRecord.orderBy('date').orderBy('start_hour'),
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
@@ -301,7 +301,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             padding: EdgeInsets.fromLTRB(
                                                 10, 0, 0, 0),
                                             child: Text(
-                                              '${dateTimeFormat('M/d H:m', listViewShiftsRecord.startHour)} - ${dateTimeFormat('M/d H:m', listViewShiftsRecord.endHour)}',
+                                              '${listViewShiftsRecord.startHour} - ${listViewShiftsRecord.endHour}',
                                               style: FlutterFlowTheme.bodyText1
                                                   .override(
                                                 fontFamily: 'Poppins',
