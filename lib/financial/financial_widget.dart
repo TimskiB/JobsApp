@@ -432,8 +432,8 @@ class _FinancialWidgetState extends State<FinancialWidget> {
                 Expanded(
                   child: StreamBuilder<List<TransactionsRecord>>(
                     stream: queryTransactionsRecord(
-                      queryBuilder: (transactionsRecord) =>
-                          transactionsRecord.orderBy('created_at'),
+                      queryBuilder: (transactionsRecord) => transactionsRecord
+                          .orderBy('created_at', descending: true),
                       limit: 3,
                     ),
                     builder: (context, snapshot) {
