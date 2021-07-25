@@ -102,7 +102,7 @@ class _FinancialWidgetState extends State<FinancialWidget> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        financialFinancialRecord.income.toString(),
+                        '₪${financialFinancialRecord.income.toString()}',
                         style: FlutterFlowTheme.title1.override(
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.bold,
@@ -172,6 +172,7 @@ class _FinancialWidgetState extends State<FinancialWidget> {
                           child: Card(
                             clipBehavior: Clip.antiAliasWithSaveLayer,
                             color: Color(0xFFF5F5F5),
+                            elevation: 2,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
                             ),
@@ -227,6 +228,7 @@ class _FinancialWidgetState extends State<FinancialWidget> {
                             child: Card(
                               clipBehavior: Clip.antiAliasWithSaveLayer,
                               color: Color(0xFFF5F5F5),
+                              elevation: 2,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15),
                               ),
@@ -284,6 +286,7 @@ class _FinancialWidgetState extends State<FinancialWidget> {
                             child: Card(
                               clipBehavior: Clip.antiAliasWithSaveLayer,
                               color: Color(0xFFF5F5F5),
+                              elevation: 2,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15),
                               ),
@@ -341,6 +344,7 @@ class _FinancialWidgetState extends State<FinancialWidget> {
                             child: Card(
                               clipBehavior: Clip.antiAliasWithSaveLayer,
                               color: Color(0xFFF5F5F5),
+                              elevation: 2,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15),
                               ),
@@ -460,7 +464,7 @@ class _FinancialWidgetState extends State<FinancialWidget> {
                         );
                       }
                       return Padding(
-                        padding: EdgeInsets.fromLTRB(15, 5, 15, 0),
+                        padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
                         child: ListView.builder(
                           padding: EdgeInsets.zero,
                           scrollDirection: Axis.vertical,
@@ -500,10 +504,11 @@ class _FinancialWidgetState extends State<FinancialWidget> {
                                 final cardTransactionsRecord =
                                     cardTransactionsRecordList.first;
                                 return Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                                  padding: EdgeInsets.fromLTRB(15, 0, 15, 5),
                                   child: Card(
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
                                     color: Color(0xFFF5F5F5),
+                                    elevation: 3,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     ),

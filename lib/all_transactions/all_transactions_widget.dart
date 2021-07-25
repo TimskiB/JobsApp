@@ -111,7 +111,7 @@ class _AllTransactionsWidgetState extends State<AllTransactionsWidget> {
                   );
                 }
                 return Padding(
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                   child: ListView.builder(
                     padding: EdgeInsets.zero,
                     scrollDirection: Axis.vertical,
@@ -150,72 +150,77 @@ class _AllTransactionsWidgetState extends State<AllTransactionsWidget> {
                           }
                           final cardTransactionsRecord =
                               cardTransactionsRecordList.first;
-                          return Card(
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            color: Color(0xFFF5F5F5),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Container(
-                              width: 100,
-                              height: 120,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFEEEEEE),
+                          return Padding(
+                            padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                            child: Card(
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              color: Color(0xFFF5F5F5),
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              child: Padding(
-                                padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      listViewTransactionsRecord.name,
-                                      style: FlutterFlowTheme.title2.override(
-                                        fontFamily: 'Poppins',
+                              child: Container(
+                                width: 100,
+                                height: 120,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFEEEEEE),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text(
+                                        listViewTransactionsRecord.name,
+                                        style: FlutterFlowTheme.title2.override(
+                                          fontFamily: 'Poppins',
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      '₪${listViewTransactionsRecord.price.toString()}',
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
+                                      Text(
+                                        '₪${listViewTransactionsRecord.price.toString()}',
+                                        style:
+                                            FlutterFlowTheme.bodyText1.override(
+                                          fontFamily: 'Poppins',
+                                        ),
                                       ),
-                                    ),
-                                    Container(
-                                      width: 75,
-                                      height: 25,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFFF8A65),
-                                      ),
-                                      child: Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(1, 2, 1, 2),
-                                        child: Text(
-                                          listViewTransactionsRecord
-                                              .description,
-                                          textAlign: TextAlign.center,
-                                          style: FlutterFlowTheme.bodyText1
-                                              .override(
-                                            fontFamily: 'Poppins',
+                                      Container(
+                                        width: 75,
+                                        height: 25,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFFF8A65),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsets.fromLTRB(1, 2, 1, 2),
+                                          child: Text(
+                                            listViewTransactionsRecord
+                                                .description,
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.bodyText1
+                                                .override(
+                                              fontFamily: 'Poppins',
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                      child: Text(
-                                        dateTimeFormat(
-                                            'relative',
-                                            listViewTransactionsRecord
-                                                .createdAt),
-                                        style:
-                                            FlutterFlowTheme.subtitle1.override(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 14,
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                        child: Text(
+                                          dateTimeFormat(
+                                              'relative',
+                                              listViewTransactionsRecord
+                                                  .createdAt),
+                                          style: FlutterFlowTheme.subtitle1
+                                              .override(
+                                            fontFamily: 'Poppins',
+                                            fontSize: 14,
+                                          ),
                                         ),
-                                      ),
-                                    )
-                                  ],
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
