@@ -64,7 +64,43 @@ class _EndShiftPageWidgetState extends State<EndShiftPageWidget> {
                 size: 24,
               ),
             ),
-            actions: [],
+            actions: [
+              IconButton(
+                onPressed: () async {
+                  Navigator.pop(context);
+                  await showDialog(
+                    context: context,
+                    builder: (alertDialogContext) {
+                      return AlertDialog(
+                        title: Text('Delete Shift?'),
+                        content:
+                            Text('Are you sure you want ot delete this shift?'),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(alertDialogContext),
+                            child: Text('Cancel'),
+                          ),
+                          TextButton(
+                            onPressed: () async {
+                              Navigator.pop(alertDialogContext);
+                              await widget.shift.delete();
+                              ;
+                            },
+                            child: Text('Confirm'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                icon: Icon(
+                  Icons.remove_circle_sharp,
+                  color: Color(0xFF9E9E9E),
+                  size: 28,
+                ),
+                iconSize: 28,
+              )
+            ],
             centerTitle: true,
             elevation: 0,
           ),
@@ -205,6 +241,16 @@ class _EndShiftPageWidgetState extends State<EndShiftPageWidget> {
                                 );
                                 await widget.shift.update(shiftsUpdateData);
                                 Navigator.pop(context);
+                                final transactionsCreateData =
+                                    createTransactionsRecordData(
+                                  name: endShiftPageShiftsRecord.job,
+                                  price: double.parse(earnedController.text),
+                                  description: 'Personal',
+                                  createdAt: getCurrentTimestamp,
+                                );
+                                await TransactionsRecord.collection
+                                    .doc()
+                                    .set(transactionsCreateData);
                               },
                               text: 'Mark As Complete',
                               options: FFButtonOptions(
