@@ -52,8 +52,7 @@ class _ExpenseCategoryWidgetState extends State<ExpenseCategoryWidget> {
         child: StreamBuilder<List<TransactionsRecord>>(
           stream: queryTransactionsRecord(
             queryBuilder: (transactionsRecord) => transactionsRecord
-                .where('description', isEqualTo: widget.categoryName)
-                .orderBy('created_at'),
+                .where('description', isEqualTo: widget.categoryName),
           ),
           builder: (context, snapshot) {
             // Customize what your widget looks like when it's loading.

@@ -1,10 +1,11 @@
+import '../all_transactions/all_transactions_widget.dart';
 import '../backend/backend.dart';
-import '../components/transaction_widget.dart';
 import '../expense_category/expense_category_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../new_transaction/new_transaction_widget.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -149,305 +150,237 @@ class _FinancialWidgetState extends State<FinancialWidget> {
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(15, 5, 15, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      InkWell(
-                        onTap: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.leftToRight,
-                              duration: Duration(milliseconds: 270),
-                              reverseDuration: Duration(milliseconds: 270),
-                              child: ExpenseCategoryWidget(
-                                categoryName: 'Food',
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        InkWell(
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.leftToRight,
+                                duration: Duration(milliseconds: 270),
+                                reverseDuration: Duration(milliseconds: 270),
+                                child: ExpenseCategoryWidget(
+                                  categoryName: 'Food',
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                        child: Card(
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          color: Color(0xFFF5F5F5),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: Container(
-                            width: 130,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              color: Color(0xFFEEC4FF),
+                            );
+                          },
+                          child: Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: Color(0xFFF5F5F5),
+                            shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
                             ),
-                            child: Padding(
-                              padding: EdgeInsets.fromLTRB(8, 5, 0, 0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Food',
-                                    style: FlutterFlowTheme.title2.override(
-                                      fontFamily: 'Poppins',
+                            child: Container(
+                              width: 130,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFEEC4FF),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(8, 5, 0, 0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Food',
+                                      style: FlutterFlowTheme.title2.override(
+                                        fontFamily: 'Poppins',
+                                      ),
                                     ),
+                                    Align(
+                                      alignment: Alignment(0, 0),
+                                      child: Icon(
+                                        Icons.fastfood_rounded,
+                                        color: Colors.black,
+                                        size: 42,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                          child: InkWell(
+                            onTap: () async {
+                              await Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.leftToRight,
+                                  duration: Duration(milliseconds: 270),
+                                  reverseDuration: Duration(milliseconds: 270),
+                                  child: ExpenseCategoryWidget(
+                                    categoryName: 'Shopping',
                                   ),
-                                  Align(
-                                    alignment: Alignment(0, 0),
-                                    child: Icon(
-                                      Icons.fastfood_rounded,
-                                      color: Colors.black,
-                                      size: 42,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: InkWell(
-                          onTap: () async {
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.leftToRight,
-                                duration: Duration(milliseconds: 270),
-                                reverseDuration: Duration(milliseconds: 270),
-                                child: ExpenseCategoryWidget(
-                                  categoryName: 'Shopping',
                                 ),
-                              ),
-                            );
-                          },
-                          child: Card(
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            color: Color(0xFFF5F5F5),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: Container(
-                              width: 130,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFFDF3DB),
+                              );
+                            },
+                            child: Card(
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              color: Color(0xFFF5F5F5),
+                              shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15),
                               ),
-                              child: Padding(
-                                padding: EdgeInsets.fromLTRB(8, 5, 0, 0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Shopping',
-                                      style: FlutterFlowTheme.title2.override(
-                                        fontFamily: 'Poppins',
+                              child: Container(
+                                width: 130,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFFDF3DB),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(8, 5, 0, 0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Shopping',
+                                        style: FlutterFlowTheme.title2.override(
+                                          fontFamily: 'Poppins',
+                                        ),
                                       ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment(0, 0),
-                                      child: FaIcon(
-                                        FontAwesomeIcons.shoppingBag,
-                                        color: Colors.black,
-                                        size: 42,
-                                      ),
-                                    )
-                                  ],
+                                      Align(
+                                        alignment: Alignment(0, 0),
+                                        child: FaIcon(
+                                          FontAwesomeIcons.shoppingBag,
+                                          color: Colors.black,
+                                          size: 42,
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: InkWell(
-                          onTap: () async {
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.leftToRight,
-                                duration: Duration(milliseconds: 270),
-                                reverseDuration: Duration(milliseconds: 270),
-                                child: ExpenseCategoryWidget(
-                                  categoryName: 'Friends',
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                          child: InkWell(
+                            onTap: () async {
+                              await Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.leftToRight,
+                                  duration: Duration(milliseconds: 270),
+                                  reverseDuration: Duration(milliseconds: 270),
+                                  child: ExpenseCategoryWidget(
+                                    categoryName: 'Friends',
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
-                          child: Card(
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            color: Color(0xFFF5F5F5),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: Container(
-                              width: 130,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFD4F5FF),
+                              );
+                            },
+                            child: Card(
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              color: Color(0xFFF5F5F5),
+                              shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15),
                               ),
-                              child: Padding(
-                                padding: EdgeInsets.fromLTRB(8, 5, 0, 0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Friends',
-                                      style: FlutterFlowTheme.title2.override(
-                                        fontFamily: 'Poppins',
+                              child: Container(
+                                width: 130,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFD4F5FF),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(8, 5, 0, 0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Friends',
+                                        style: FlutterFlowTheme.title2.override(
+                                          fontFamily: 'Poppins',
+                                        ),
                                       ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment(0, 0),
-                                      child: Icon(
-                                        Icons.people_alt,
-                                        color: Colors.black,
-                                        size: 42,
-                                      ),
-                                    )
-                                  ],
+                                      Align(
+                                        alignment: Alignment(0, 0),
+                                        child: Icon(
+                                          Icons.people_alt,
+                                          color: Colors.black,
+                                          size: 42,
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: InkWell(
-                          onTap: () async {
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.leftToRight,
-                                duration: Duration(milliseconds: 270),
-                                reverseDuration: Duration(milliseconds: 270),
-                                child: ExpenseCategoryWidget(
-                                  categoryName: 'Personal',
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                          child: InkWell(
+                            onTap: () async {
+                              await Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.leftToRight,
+                                  duration: Duration(milliseconds: 270),
+                                  reverseDuration: Duration(milliseconds: 270),
+                                  child: ExpenseCategoryWidget(
+                                    categoryName: 'Personal',
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
-                          child: Card(
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            color: Color(0xFFF5F5F5),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: Container(
-                              width: 130,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFD4F5FF),
+                              );
+                            },
+                            child: Card(
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              color: Color(0xFFF5F5F5),
+                              shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15),
                               ),
-                              child: Padding(
-                                padding: EdgeInsets.fromLTRB(8, 5, 0, 0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Personal',
-                                      style: FlutterFlowTheme.title2.override(
-                                        fontFamily: 'Poppins',
+                              child: Container(
+                                width: 130,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFD4F5FF),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(8, 5, 0, 0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Personal',
+                                        style: FlutterFlowTheme.title2.override(
+                                          fontFamily: 'Poppins',
+                                        ),
                                       ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment(0, 0),
-                                      child: Icon(
-                                        Icons.computer_rounded,
-                                        color: Colors.black,
-                                        size: 42,
-                                      ),
-                                    )
-                                  ],
+                                      Align(
+                                        alignment: Alignment(0, 0),
+                                        child: Icon(
+                                          Icons.computer_rounded,
+                                          color: Colors.black,
+                                          size: 42,
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(10, 70, 10, 0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Categories',
-                              style: FlutterFlowTheme.title1.override(
-                                fontFamily: 'Poppins',
-                                fontSize: 16,
-                              ),
-                            ),
-                            FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
-                              },
-                              text: 'See all',
-                              options: FFButtonOptions(
-                                width: 80,
-                                height: 30,
-                                color: FlutterFlowTheme.tertiaryColor,
-                                textStyle: FlutterFlowTheme.title1.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.secondaryColor,
-                                  fontSize: 14,
-                                ),
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1,
-                                ),
-                                borderRadius: 12,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(10, 70, 10, 0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Categories',
-                              style: FlutterFlowTheme.title1.override(
-                                fontFamily: 'Poppins',
-                                fontSize: 16,
-                              ),
-                            ),
-                            FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
-                              },
-                              text: 'See all',
-                              options: FFButtonOptions(
-                                width: 80,
-                                height: 30,
-                                color: FlutterFlowTheme.tertiaryColor,
-                                textStyle: FlutterFlowTheme.title1.override(
-                                  fontFamily: 'Poppins',
-                                  color: FlutterFlowTheme.secondaryColor,
-                                  fontSize: 14,
-                                ),
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1,
-                                ),
-                                borderRadius: 12,
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 Padding(
@@ -464,8 +397,17 @@ class _FinancialWidgetState extends State<FinancialWidget> {
                         ),
                       ),
                       FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
+                        onPressed: () async {
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.scale,
+                              alignment: Alignment.bottomCenter,
+                              duration: Duration(milliseconds: 270),
+                              reverseDuration: Duration(milliseconds: 270),
+                              child: AllTransactionsWidget(),
+                            ),
+                          );
                         },
                         text: 'See all',
                         options: FFButtonOptions(
@@ -490,8 +432,8 @@ class _FinancialWidgetState extends State<FinancialWidget> {
                 Expanded(
                   child: StreamBuilder<List<TransactionsRecord>>(
                     stream: queryTransactionsRecord(
-                      queryBuilder: (transactionsRecord) =>
-                          transactionsRecord.orderBy('created_at'),
+                      queryBuilder: (transactionsRecord) => transactionsRecord
+                          .orderBy('created_at', descending: true),
                       limit: 3,
                     ),
                     builder: (context, snapshot) {
@@ -545,8 +487,7 @@ class _FinancialWidgetState extends State<FinancialWidget> {
                                   );
                                 }
                                 List<TransactionsRecord>
-                                    transactionTransactionsRecordList =
-                                    snapshot.data;
+                                    cardTransactionsRecordList = snapshot.data;
                                 // Customize what your widget looks like with no query results.
                                 if (snapshot.data.isEmpty) {
                                   return Container(
@@ -556,9 +497,108 @@ class _FinancialWidgetState extends State<FinancialWidget> {
                                     ),
                                   );
                                 }
-                                final transactionTransactionsRecord =
-                                    transactionTransactionsRecordList.first;
-                                return TransactionWidget();
+                                final cardTransactionsRecord =
+                                    cardTransactionsRecordList.first;
+                                return Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                                  child: Card(
+                                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                                    color: Color(0xFFF5F5F5),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Container(
+                                      width: 100,
+                                      height: 100,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFFEEEEEE),
+                                      ),
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(10, 10, 10, 0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  listViewTransactionsRecord
+                                                      .name,
+                                                  style: FlutterFlowTheme.title3
+                                                      .override(
+                                                    fontFamily: 'Poppins',
+                                                  ),
+                                                ),
+                                                AutoSizeText(
+                                                  '₪${listViewTransactionsRecord.price.toString()}',
+                                                  style: FlutterFlowTheme
+                                                      .bodyText1
+                                                      .override(
+                                                    fontFamily: 'Poppins',
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.fromLTRB(
+                                                  0, 8, 0, 0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    dateTimeFormat(
+                                                        'relative',
+                                                        listViewTransactionsRecord
+                                                            .createdAt),
+                                                    style: FlutterFlowTheme
+                                                        .subtitle1
+                                                        .override(
+                                                      fontFamily: 'Poppins',
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    width: 75,
+                                                    height: 25,
+                                                    decoration: BoxDecoration(
+                                                      color: Color(0xFFFF8A65),
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              1, 2, 1, 2),
+                                                      child: Text(
+                                                        listViewTransactionsRecord
+                                                            .description,
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: FlutterFlowTheme
+                                                            .bodyText1
+                                                            .override(
+                                                          fontFamily: 'Poppins',
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
                               },
                             );
                           },
