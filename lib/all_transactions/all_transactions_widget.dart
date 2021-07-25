@@ -83,7 +83,7 @@ class _AllTransactionsWidgetState extends State<AllTransactionsWidget> {
             child: StreamBuilder<List<TransactionsRecord>>(
               stream: queryTransactionsRecord(
                 queryBuilder: (transactionsRecord) =>
-                    transactionsRecord.orderBy('created_at'),
+                    transactionsRecord.orderBy('created_at', descending: true),
               ),
               builder: (context, snapshot) {
                 // Customize what your widget looks like when it's loading.

@@ -74,7 +74,7 @@ class _EndShiftPageWidgetState extends State<EndShiftPageWidget> {
                       return AlertDialog(
                         title: Text('Delete Shift?'),
                         content:
-                            Text('Are you sure you want ot delete this shift?'),
+                            Text('Are you sure you want to delete this shift?'),
                         actions: [
                           TextButton(
                             onPressed: () => Navigator.pop(alertDialogContext),
